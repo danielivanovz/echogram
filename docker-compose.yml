@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    image: echogram/frontend
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.local
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    image: echogram/backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - frontend

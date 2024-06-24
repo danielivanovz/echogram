@@ -1,19 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "standalone",
   rewrites: async () => {
     return [
       {
         source: "/api/:path*",
-        destination: process.env.NODE_ENV === "development" ? "http://127.0.0.1:8000/api/:path*" : "/api/",
+        destination: process.env.NODE_ENV === "development" ? `${NEXT_PUBLIC_BACKEND_URL}/api/:path*` : "/api/",
       },
       {
         source: "/docs",
-        destination: process.env.NODE_ENV === "development" ? "http://127.0.0.1:8000/docs" : "/api/docs",
+        destination: process.env.NODE_ENV === "development" ? `${NEXT_PUBLIC_BACKEND_URL}/docs` : "/api/docs",
       },
       {
         source: "/openapi.json",
         destination:
-          process.env.NODE_ENV === "development" ? "http://127.0.0.1:8000/openapi.json" : "/api/openapi.json",
+          process.env.NODE_ENV === "development" ? `${NEXT_PUBLIC_BACKEND_URL}/openapi.json` : "/api/openapi.json",
       },
     ]
   },
