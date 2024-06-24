@@ -38,7 +38,7 @@ RUN poetry install
 
 WORKDIR /app
 
-EXPOSE 5000
+EXPOSE 4000
 CMD ["uvicorn", "--reload", "api.app:run"]
 
 FROM python-base as production
@@ -51,4 +51,4 @@ ENV PYTHONPATH=/app
 
 RUN pip install gunicorn
 
-CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "-b", "0.0.0.0:5000", "api.app:app"]
+CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "-b", "0.0.0.0:4000", "api.app:app"]
