@@ -18,12 +18,12 @@ class Settings(BaseSettings):
     imap_port: int = Field(validation_alias="EMAIL_PORT")
     imap_username: str = Field(validation_alias="EMAIL_USERNAME")
     imap_password: str = Field(validation_alias="EMAIL_PASSWORD")
-    
+
     jwt_secret: str = Field(validation_alias="JWT_SECRET")
 
     collector: CollectorSettings = CollectorSettings()
 
-    model_config = SettingsConfigDict(env_file=".env")
+    model_config = SettingsConfigDict(env_file=".env", extra="allow")
 
 
 @lru_cache()
