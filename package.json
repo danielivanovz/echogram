@@ -6,7 +6,7 @@
     "run:fe": "pnpm run kill:fe && next dev",
     "run:be": "pnpm run kill:be && poetry install && poetry run start",
     "kill:fe": "lsof -ti:3000 | xargs kill -9",
-    "kill:be": "lsof -ti:8000 | xargs kill -9",
+    "kill:be": "lsof -ti:5000 | xargs kill -9",
     "run:all": "concurrently \"pnpm run run:fe\" \"pnpm run run:be\"",
     "build": "next build",
     "start": "next start",
