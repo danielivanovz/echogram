@@ -2,10 +2,6 @@
 const nextConfig = {
   rewrites: async () => {
     return [
-      // {
-      //   source: "/api/auth/:path*",
-      //   destination: process.env.NODE_ENV === "development" ? "http://127.0.0.1:3000/api/auth/:path*" : "/api/auth/",
-      // },
       {
         source: "/api/:path*",
         destination: process.env.NODE_ENV === "development" ? "http://127.0.0.1:8000/api/:path*" : "/api/",
