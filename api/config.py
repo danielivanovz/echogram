@@ -23,7 +23,7 @@ class Settings(BaseSettings):
 
     collector: CollectorSettings = CollectorSettings()
 
-    model_config = SettingsConfigDict(env_file=".env", extra="allow")
+    model_config = SettingsConfigDict(extra="allow")
 
 
 @lru_cache()
