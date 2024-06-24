@@ -45,7 +45,7 @@ FROM python-base as production
 ENV FASTAPI_ENV=production
 COPY --from=builder-base $POETRY_HOME $POETRY_HOME
 COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
-COPY . /app/
+COPY --from=builder-base /app/.env /app/api/.env
 WORKDIR /app
 
 ENV PYTHONPATH=/app
