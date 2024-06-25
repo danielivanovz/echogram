@@ -51,14 +51,19 @@ def store_magic(magic_link) -> None:
 
 
 def send_magic_link(email: str, token: str) -> None:
-    settings = get_settings()
+    try:
+        settings = get_settings()
 
-    msg = f"Click here to login: http://localhost:3000/auth/magiclink/validate/{token}"
-    subject = "Magic Link Login"
+        msg = f"Click here to login: {settings.callback_url}/{token}"
+        subject = "Magic Link Login"
 
-    with smtplib.SMTP_SSL(settings.imap_host, 465) as server:
-        server.login(settings.imap_username, settings.imap_password)
-        server.sendmail("no-reply@echogram.ink", email, f"Subject: {subject}\n\n{msg}")
+        with smtplib.SMTP(settings.imap_host, settings.smpt_port) as server:
+            server.login(settings.imap_username, settings.imap_password)
+            server.sendmail(
+                "no-reply@echogram.ink", email, f"Subject: {subject}\n\n{msg}"
+            )
+    except Exception as e:
+        print(f"Error sending email: {e}")
 
 
 @magic_link_route.post(

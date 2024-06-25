@@ -12,14 +12,15 @@ class CollectorSettings(BaseModel):
 class Settings(BaseSettings):
     supabase_url: str = Field(validation_alias="SUPABASE_URL")
     supabase_key: str = Field(validation_alias="SUPABASE_KEY")
-    supabase_uri: str = Field(validation_alias="SUPABASE_URI")
 
+    imap_port: int = Field(validation_alias="EMAIL_IMAP_PORT")
+    smpt_port: int = Field(validation_alias="EMAIL_SMTP_PORT")
     imap_host: str = Field(validation_alias="EMAIL_HOST")
-    imap_port: int = Field(validation_alias="EMAIL_PORT")
     imap_username: str = Field(validation_alias="EMAIL_USERNAME")
     imap_password: str = Field(validation_alias="EMAIL_PASSWORD")
 
     jwt_secret: str = Field(validation_alias="JWT_SECRET")
+    callback_url: str = Field(validation_alias="CALLBACK_URL")
 
     collector: CollectorSettings = CollectorSettings()
 
